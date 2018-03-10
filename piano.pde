@@ -1,9 +1,11 @@
 /***** PIANO ******/
 // wav files: https://github.com/pffy/wav-piano-sound
 
+import ddf.minim.*;
+Minim minim;
+AudioPlayer player;
 
-import processing.sound.*;
-SoundFile file;
+
 
 int x_margin = 50;
 int y_margin = 80;
@@ -25,6 +27,7 @@ float bstartY;
 void setup() {
   size(640, 480);
   background(100, 100, 100);
+  minim = new Minim(this);
   
   wkey_width = (width-2*x_margin)/8;
   wkey_height = height-2*y_margin;
@@ -58,6 +61,9 @@ void draw() {
       rect(bstartX+i*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     }
   }
+  
+
+
 }
 
 
@@ -78,8 +84,8 @@ void mousePressed(){
       rect(bstartX+1*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/c1.wav");
-      file.play();
+      player = minim.loadFile("wav/c1.wav");
+      player.play();
 
   } else if(mouseX>startX+1*wkey_width && mouseX<=startX+2*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- D -----*/  
@@ -97,9 +103,8 @@ void mousePressed(){
       rect(bstartX+2*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/d1.wav");
-      file.play();
-
+      player = minim.loadFile("wav/d1.wav");
+      player.play();
   }  else if(mouseX>startX+2*wkey_width && mouseX<=startX+3*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- E -----*/  
       //draw white key
@@ -115,8 +120,9 @@ void mousePressed(){
       rect(bstartX+2*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/e1.wav");
-      file.play();
+      player = minim.loadFile("wav/e1.wav");
+      player.play();
+
 
   }   else if(mouseX>startX+3*wkey_width && mouseX<=startX+4*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- F -----*/  
@@ -133,8 +139,8 @@ void mousePressed(){
       rect(bstartX+4*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/f1.wav");
-      file.play();
+      player = minim.loadFile("wav/f1.wav");
+      player.play();
   
   }   else if(mouseX>startX+4*wkey_width && mouseX<=startX+5*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- G -----*/  
@@ -152,9 +158,9 @@ void mousePressed(){
       rect(bstartX+5*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/g1.wav");
-      file.play();
-
+      player = minim.loadFile("wav/g1.wav");
+      player.play();
+      
   }   else if(mouseX>startX+5*wkey_width && mouseX<=startX+6*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- A -----*/  
       //draw white key
@@ -171,9 +177,9 @@ void mousePressed(){
       rect(bstartX+6*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/a1.wav");
-      file.play();
-
+      player = minim.loadFile("wav/a1.wav");
+      player.play();
+      
   }   else if(mouseX>startX+6*wkey_width && mouseX<=startX+7*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- B -----*/  
       //draw white key
@@ -189,9 +195,9 @@ void mousePressed(){
       rect(bstartX+6*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
       
       //play sound
-      file = new SoundFile(this, "wav/b1.wav");
-      file.play();
-  
+      player = minim.loadFile("wav/b1.wav");
+      player.play();  
+      
   } else if(mouseX>startX+7*wkey_width && mouseX<=startX+8*wkey_width && mouseY>startY && mouseY <=startY+wkey_height){
       /*----- C8 -----*/  
       //draw white key
@@ -202,8 +208,8 @@ void mousePressed(){
       //draw black key
       
       //play sound
-      file = new SoundFile(this, "wav/c2.wav");
-      file.play();
+      player = minim.loadFile("wav/c2.wav");
+      player.play();
   }
 }
 
@@ -226,9 +232,9 @@ void keyPressed() {
     strokeWeight(0);
     rect(bstartX+1*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     
-    //play sound
-    file = new SoundFile(this, "wav/c1.wav");
-    file.play();
+    //play sound 
+    player = minim.loadFile("wav/c1.wav");
+    player.play();
       
   } else if (key == 'S' || key == 's') {
     println("D");
@@ -247,8 +253,8 @@ void keyPressed() {
     rect(bstartX+2*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
 
     //play sound
-    file = new SoundFile(this, "wav/d1.wav");
-    file.play();
+    player = minim.loadFile("wav/d1.wav");
+    player.play();
     
   } else if (key == 'D' || key == 'd') {
     println("E");
@@ -265,8 +271,8 @@ void keyPressed() {
     rect(bstartX+2*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     
     //play sound
-    file = new SoundFile(this, "wav/e1.wav");
-    file.play();
+    player = minim.loadFile("wav/e1.wav");
+    player.play();
     
   } else if (key == 'F' || key == 'f') {
     println("F");
@@ -283,8 +289,9 @@ void keyPressed() {
     rect(bstartX+4*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     
     //play sound
-    file = new SoundFile(this, "wav/f1.wav");
-    file.play();
+    player = minim.loadFile("wav/f1.wav");
+    player.play();   
+ 
   } else if (key == 'G' || key == 'g') {
     println("G");
     //draw white key
@@ -301,8 +308,8 @@ void keyPressed() {
     rect(bstartX+5*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     
     //play sound
-    file = new SoundFile(this, "wav/g1.wav");
-    file.play();
+    player = minim.loadFile("wav/g1.wav");
+    player.play();
     
   } else if (key == 'H' || key == 'h') {
     println("A");
@@ -320,8 +327,8 @@ void keyPressed() {
     rect(bstartX+6*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     
     //play sound
-    file = new SoundFile(this, "wav/a1.wav");
-    file.play();
+    player = minim.loadFile("wav/a1.wav");
+    player.play();
     
   } else if (key == 'J' || key == 'j') {
     println("B");
@@ -339,8 +346,8 @@ void keyPressed() {
     rect(bstartX+6*(bkeys_space+bkey_width), bstartY, bkey_width, bkey_height);
     
     //play sound
-    file = new SoundFile(this, "wav/b1.wav");
-    file.play();
+    player = minim.loadFile("wav/b1.wav");
+    player.play();
     
   } else if (key == 'K' || key == 'k') {
     println("C8");
@@ -352,7 +359,7 @@ void keyPressed() {
     rect(startX+7*wkey_width, startY, wkey_width, wkey_height);
     
     //play sound
-    file = new SoundFile(this, "wav/c2.wav");
-    file.play();
+    player = minim.loadFile("wav/c2.wav");
+    player.play();
   }
 }
